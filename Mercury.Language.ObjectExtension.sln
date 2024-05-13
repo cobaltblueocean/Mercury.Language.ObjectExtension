@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercury.Language.ObjectExtension", "Mercury.Language.ObjectExtension\Mercury.Language.ObjectExtension.csproj", "{C3CA9986-E28A-4D64-A3BD-EF6B4CC3BE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercury.Language.ObjectExtension.Test", "Mercury.Language.ObjectExtension.Test\Mercury.Language.ObjectExtension.Test.csproj", "{8B8A58DC-643F-43E5-92E2-63F2B42680F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3CA9986-E28A-4D64-A3BD-EF6B4CC3BE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CA9986-E28A-4D64-A3BD-EF6B4CC3BE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CA9986-E28A-4D64-A3BD-EF6B4CC3BE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CA9986-E28A-4D64-A3BD-EF6B4CC3BE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B8A58DC-643F-43E5-92E2-63F2B42680F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8A58DC-643F-43E5-92E2-63F2B42680F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8A58DC-643F-43E5-92E2-63F2B42680F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8A58DC-643F-43E5-92E2-63F2B42680F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC78A09A-8287-4918-A16B-E369FE1B259F}
+	EndGlobalSection
+EndGlobal
