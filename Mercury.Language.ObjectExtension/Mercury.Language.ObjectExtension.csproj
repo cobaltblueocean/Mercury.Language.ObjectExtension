@@ -8,13 +8,29 @@
     <ApplicationIcon>Mercury.ico</ApplicationIcon>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageId>Mercury.Language.ObjectExtension</PackageId>
-    <Version>0.8.0.1</Version>
+    <Version>0.8.0.5</Version>
     <Authors>Kei Nakai</Authors>
     <Company>Mercury Technologies</Company>
     <Product>MercuryObjectExtension package</Product>
     <Description>Extension package for Object class and Type class for enhance comparing</Description>
     <Copyright>Copyright (C) Mercury Technologies. All rights reserved.</Copyright>
     <PackageIcon>Mercury.jpg</PackageIcon>
+    <RepositoryUrl>https://github.com/cobaltblueocean/Mercury.Language.ObjectExtension</RepositoryUrl>
+    <PackageReleaseNotes>[0.8.0.1]
+ - Separated ObjectExtension class and TypeExtension class to be more portable
+
+[0.8.0.2]
+ - Changed the LocalizedResource class to internal class; to avoid conflict with Mercury.Language.Core library.
+
+[0.8.0.3]
+ - Bug fix when the Target object contains "Type" as a property, it would be significant consuming time to process.
+
+[0.8.0.4]
+ - Fix for comparing the values; before, try to Equals() to evaluate, then if false, proceed to the current logic.
+
+[0.8.0.5]
+ - Bug fix for AreObjectsEqual() method to treat Type property.
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

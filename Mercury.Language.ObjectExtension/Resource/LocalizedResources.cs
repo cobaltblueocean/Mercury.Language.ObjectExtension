@@ -31,7 +31,7 @@ namespace Mercury.Language
     /// <summary>
     /// Resource Manager for Culture dependent message context
     /// </summary>
-    public class LocalizedResources : INotifyPropertyChanged
+    internal class LocalizedResources : INotifyPropertyChanged
     {
         #region Singleton Class Implementation
         private readonly Resources resources = new Resources();

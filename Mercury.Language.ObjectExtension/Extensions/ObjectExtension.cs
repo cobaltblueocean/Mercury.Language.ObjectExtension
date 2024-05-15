@@ -142,7 +142,6 @@ namespace System
         public static bool AreObjectsEqual(this object objectA, object objectB, Boolean isIncludeObsolete, params string[] ignoreList)
         {
             List<long> objectHashList = new List<long>();
-
             return EvaluateObjectsComparison(objectA, objectB, objectHashList, isIncludeObsolete, ignoreList);
         }
 
@@ -164,258 +163,265 @@ namespace System
             {
                 if (objectA != null && objectB != null)
                 {
-                    Type objectTypeA;
-                    Type objectTypeB;
-
-                    objectTypeA = objectA.GetType();
-                    objectTypeB = objectB.GetType();
-
-                    if (!objectHashList.Contains(objectA.GetHashCode()))
+                    if (objectA.Equals(objectB))
                     {
-                        objectHashList = MarkAsPrevioiuslyAppreared(objectHashList, objectA);
+                        return true;
+                    }
+                    else
+                    {
+                        Type objectTypeA;
+                        Type objectTypeB;
 
-                        if (IsTypeSame(objectA.GetType(), objectB.GetType()))
+                        objectTypeA = objectA.GetType();
+                        objectTypeB = objectB.GetType();
+
+                        if (!objectHashList.Contains(objectA.GetHashCode()))
                         {
-                            if (!IsKeyValuePair(objectA))
+                            objectHashList = MarkAsPrevioiuslyAppreared(objectHashList, objectA);
+
+                            if (IsTypeSame(objectA.GetType(), objectB.GetType()))
                             {
-                                if (CanDirectlyCompare(objectTypeA) && !IsList(objectA))
+                                if (!IsKeyValuePair(objectA))
                                 {
-                                    result = objectA.Equals(objectB);
-                                    if (!result)
-                                        Console.WriteLine(String.Format(LocalizedResources.Instance().MismatchWithPropertyFound, objectA.GetType().Name, objectB.GetType().Name));
-
-                                    return result;
-                                }
-                                // if it implements IEnumerable, then scan any items
-                                else if (typeof(IEnumerable).IsAssignableFrom(objectTypeA))
-                                {
-                                    IEnumerable<object> collectionItems1;
-                                    IEnumerable<object> collectionItems2;
-                                    int collectionItemsCount1;
-                                    int collectionItemsCount2;
-
-                                    // null check
-                                    if (objectA == null && objectB != null || objectA != null && objectB == null)
+                                    if (CanDirectlyCompare(objectTypeA) && !IsList(objectA))
                                     {
-                                        result = false;
+                                        result = objectA.Equals(objectB);
+                                        if (!result)
+                                            Console.WriteLine(String.Format(LocalizedResources.Instance().MismatchWithPropertyFound, objectA.GetType().Name, objectB.GetType().Name));
+
+                                        return result;
                                     }
-                                    else if (objectA != null && objectB != null)
+                                    // if it implements IEnumerable, then scan any items
+                                    else if (typeof(IEnumerable).IsAssignableFrom(objectTypeA))
                                     {
-                                        collectionItems1 = ((IEnumerable)objectA).Cast<object>();
-                                        collectionItems2 = ((IEnumerable)objectB).Cast<object>();
-                                        collectionItemsCount1 = collectionItems1.Count();
-                                        collectionItemsCount2 = collectionItems2.Count();
+                                        IEnumerable<object> collectionItems1;
+                                        IEnumerable<object> collectionItems2;
+                                        int collectionItemsCount1;
+                                        int collectionItemsCount2;
 
-                                        // check the counts to ensure they match
-                                        if (collectionItemsCount1 != collectionItemsCount2)
+                                        // null check
+                                        if (objectA == null && objectB != null || objectA != null && objectB == null)
                                         {
                                             result = false;
                                         }
-                                        // and if they do, compare each item... this assumes both collections have the same order
-                                        else
+                                        else if (objectA != null && objectB != null)
                                         {
-                                            for (int i = 0; i < collectionItemsCount1; i++)
+                                            collectionItems1 = ((IEnumerable)objectA).Cast<object>();
+                                            collectionItems2 = ((IEnumerable)objectB).Cast<object>();
+                                            collectionItemsCount1 = collectionItems1.Count();
+                                            collectionItemsCount2 = collectionItems2.Count();
+
+                                            // check the counts to ensure they match
+                                            if (collectionItemsCount1 != collectionItemsCount2)
                                             {
-                                                object collectionItem1;
-                                                object collectionItem2;
-                                                Type collectionItemType;
-
-                                                collectionItem1 = collectionItems1.ElementAt(i);
-                                                collectionItem2 = collectionItems2.ElementAt(i);
-                                                collectionItemType = collectionItem1.GetType();
-                                                if (!IsKeyValuePair(collectionItem1))
+                                                result = false;
+                                            }
+                                            // and if they do, compare each item... this assumes both collections have the same order
+                                            else
+                                            {
+                                                for (int i = 0; i < collectionItemsCount1; i++)
                                                 {
-                                                    if (CanDirectlyCompare(collectionItemType))
-                                                    {
-                                                        if (!AreValuesEqual(collectionItem1, collectionItem2))
-                                                        {
-                                                            result = false;
-                                                        }
-                                                    }
-                                                    else if (!EvaluateObjectsComparison(collectionItem1, collectionItem2, objectHashList, isIncludeObsolete, ignoreList))
-                                                    {
-                                                        result = false;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    var collectionItem1Key = GetPropertyValue(collectionItem1, "Key");
-                                                    var collectionItem2Key = GetPropertyValue(collectionItem2, "Key");
-                                                    var collectionItemKeyType = collectionItem1Key.GetType();
-                                                    if (CanDirectlyCompare(collectionItemKeyType))
-                                                    {
-                                                        if (!AreValuesEqual(collectionItem1Key, collectionItem2Key))
-                                                        {
-                                                            result = false;
-                                                        }
-                                                    }
-                                                    else if (!EvaluateObjectsComparison(collectionItem1Key, collectionItem2Key, objectHashList, isIncludeObsolete, ignoreList))
-                                                    {
-                                                        result = false;
-                                                    }
+                                                    object collectionItem1;
+                                                    object collectionItem2;
+                                                    Type collectionItemType;
 
-                                                    var collectionItem1Value = GetPropertyValue(collectionItem1, "Value");
-                                                    var collectionItem2Value = GetPropertyValue(collectionItem2, "Value");
-                                                    var collectionItemValueType = collectionItem1Value.GetType();
-                                                    if (CanDirectlyCompare(collectionItemValueType))
+                                                    collectionItem1 = collectionItems1.ElementAt(i);
+                                                    collectionItem2 = collectionItems2.ElementAt(i);
+                                                    collectionItemType = collectionItem1.GetType();
+                                                    if (!IsKeyValuePair(collectionItem1))
                                                     {
-                                                        if (!AreValuesEqual(collectionItem1Value, collectionItem2Value))
+                                                        if (CanDirectlyCompare(collectionItemType))
+                                                        {
+                                                            if (!AreValuesEqual(collectionItem1, collectionItem2))
+                                                            {
+                                                                result = false;
+                                                            }
+                                                        }
+                                                        else if (!EvaluateObjectsComparison(collectionItem1, collectionItem2, objectHashList, isIncludeObsolete, ignoreList))
                                                         {
                                                             result = false;
                                                         }
                                                     }
-                                                    else if (!EvaluateObjectsComparison(collectionItem1Value, collectionItem2Value, objectHashList, isIncludeObsolete, ignoreList))
+                                                    else
                                                     {
-                                                        result = false;
+                                                        var collectionItem1Key = GetPropertyValue(collectionItem1, "Key");
+                                                        var collectionItem2Key = GetPropertyValue(collectionItem2, "Key");
+                                                        var collectionItemKeyType = collectionItem1Key.GetType();
+                                                        if (CanDirectlyCompare(collectionItemKeyType))
+                                                        {
+                                                            if (!AreValuesEqual(collectionItem1Key, collectionItem2Key))
+                                                            {
+                                                                result = false;
+                                                            }
+                                                        }
+                                                        else if (!EvaluateObjectsComparison(collectionItem1Key, collectionItem2Key, objectHashList, isIncludeObsolete, ignoreList))
+                                                        {
+                                                            result = false;
+                                                        }
+
+                                                        var collectionItem1Value = GetPropertyValue(collectionItem1, "Value");
+                                                        var collectionItem2Value = GetPropertyValue(collectionItem2, "Value");
+                                                        var collectionItemValueType = collectionItem1Value.GetType();
+                                                        if (CanDirectlyCompare(collectionItemValueType))
+                                                        {
+                                                            if (!AreValuesEqual(collectionItem1Value, collectionItem2Value))
+                                                            {
+                                                                result = false;
+                                                            }
+                                                        }
+                                                        else if (!EvaluateObjectsComparison(collectionItem1Value, collectionItem2Value, objectHashList, isIncludeObsolete, ignoreList))
+                                                        {
+                                                            result = false;
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                }
-                                else if (IsList(objectA))
-                                {
-                                    int listItemsCount1;
-                                    int listItemsCount2;
-
-                                    // null check
-                                    if (objectA == null && objectB != null || objectA != null && objectB == null)
+                                    else if (IsList(objectA))
                                     {
-                                        result = false;
-                                    }
-                                    else if (objectA != null && objectB != null)
-                                    {
-                                        var ToArrayMethodA = objectA.GetType().GetMethod("ToArray");
-                                        var ToArrayMethodB = objectB.GetType().GetMethod("ToArray");
-                                        var listItemsArrayA = (System.Array)ToArrayMethodA.Invoke(objectA, null);
-                                        var listItemsArrayB = (System.Array)ToArrayMethodB.Invoke(objectB, null);
+                                        int listItemsCount1;
+                                        int listItemsCount2;
 
-                                        listItemsCount1 = listItemsArrayA.Length;
-                                        listItemsCount2 = listItemsArrayA.Length;
-
-                                        // check the counts to ensure they match
-                                        if (listItemsCount1 != listItemsCount2)
+                                        // null check
+                                        if (objectA == null && objectB != null || objectA != null && objectB == null)
                                         {
                                             result = false;
                                         }
-                                        // and if they do, compare each item... this assumes both collections have the same order
-                                        else
+                                        else if (objectA != null && objectB != null)
                                         {
-                                            for (int i = 0; i < listItemsCount1; i++)
+                                            var ToArrayMethodA = objectA.GetType().GetMethod("ToArray");
+                                            var ToArrayMethodB = objectB.GetType().GetMethod("ToArray");
+                                            var listItemsArrayA = (System.Array)ToArrayMethodA.Invoke(objectA, null);
+                                            var listItemsArrayB = (System.Array)ToArrayMethodB.Invoke(objectB, null);
+
+                                            listItemsCount1 = listItemsArrayA.Length;
+                                            listItemsCount2 = listItemsArrayA.Length;
+
+                                            // check the counts to ensure they match
+                                            if (listItemsCount1 != listItemsCount2)
                                             {
-                                                object listItem1;
-                                                object listItem2;
-                                                Type listItemType;
-
-                                                listItem1 = listItemsArrayA.GetValue(i);
-                                                listItem2 = listItemsArrayB.GetValue(i);
-                                                listItemType = listItem1.GetType();
-                                                if (!IsKeyValuePair(listItem1))
+                                                result = false;
+                                            }
+                                            // and if they do, compare each item... this assumes both collections have the same order
+                                            else
+                                            {
+                                                for (int i = 0; i < listItemsCount1; i++)
                                                 {
-                                                    if (CanDirectlyCompare(listItemType))
-                                                    {
-                                                        if (!AreValuesEqual(listItem1, listItem2))
-                                                        {
-                                                            result = false;
-                                                        }
-                                                    }
-                                                    else if (!EvaluateObjectsComparison(listItem1, listItem2, objectHashList, isIncludeObsolete, ignoreList))
-                                                    {
-                                                        result = false;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    var listItem1Key = GetPropertyValue(listItem1, "Key");
-                                                    var listItem2Key = GetPropertyValue(listItem2, "Key");
-                                                    var listItemKeyType = listItem1Key.GetType();
-                                                    if (CanDirectlyCompare(listItemKeyType))
-                                                    {
-                                                        if (!AreValuesEqual(listItem1Key, listItem2Key))
-                                                        {
-                                                            result = false;
-                                                        }
-                                                    }
-                                                    else if (!EvaluateObjectsComparison(listItem1Key, listItem2Key, objectHashList, isIncludeObsolete, ignoreList))
-                                                    {
-                                                        result = false;
-                                                    }
+                                                    object listItem1;
+                                                    object listItem2;
+                                                    Type listItemType;
 
-                                                    var listItem1Value = GetPropertyValue(listItem1, "Value");
-                                                    var listItem2Value = GetPropertyValue(listItem2, "Value");
-                                                    var listItemValueType = listItem1Value.GetType();
-                                                    if (CanDirectlyCompare(listItemValueType))
+                                                    listItem1 = listItemsArrayA.GetValue(i);
+                                                    listItem2 = listItemsArrayB.GetValue(i);
+                                                    listItemType = listItem1.GetType();
+                                                    if (!IsKeyValuePair(listItem1))
                                                     {
-                                                        if (!AreValuesEqual(listItem1Value, listItem2Value))
+                                                        if (CanDirectlyCompare(listItemType))
+                                                        {
+                                                            if (!AreValuesEqual(listItem1, listItem2))
+                                                            {
+                                                                result = false;
+                                                            }
+                                                        }
+                                                        else if (!EvaluateObjectsComparison(listItem1, listItem2, objectHashList, isIncludeObsolete, ignoreList))
                                                         {
                                                             result = false;
                                                         }
                                                     }
-                                                    else if (!EvaluateObjectsComparison(listItem1Value, listItem2Value, objectHashList, isIncludeObsolete, ignoreList))
+                                                    else
                                                     {
-                                                        result = false;
+                                                        var listItem1Key = GetPropertyValue(listItem1, "Key");
+                                                        var listItem2Key = GetPropertyValue(listItem2, "Key");
+                                                        var listItemKeyType = listItem1Key.GetType();
+                                                        if (CanDirectlyCompare(listItemKeyType))
+                                                        {
+                                                            if (!AreValuesEqual(listItem1Key, listItem2Key))
+                                                            {
+                                                                result = false;
+                                                            }
+                                                        }
+                                                        else if (!EvaluateObjectsComparison(listItem1Key, listItem2Key, objectHashList, isIncludeObsolete, ignoreList))
+                                                        {
+                                                            result = false;
+                                                        }
+
+                                                        var listItem1Value = GetPropertyValue(listItem1, "Value");
+                                                        var listItem2Value = GetPropertyValue(listItem2, "Value");
+                                                        var listItemValueType = listItem1Value.GetType();
+                                                        if (CanDirectlyCompare(listItemValueType))
+                                                        {
+                                                            if (!AreValuesEqual(listItem1Value, listItem2Value))
+                                                            {
+                                                                result = false;
+                                                            }
+                                                        }
+                                                        else if (!EvaluateObjectsComparison(listItem1Value, listItem2Value, objectHashList, isIncludeObsolete, ignoreList))
+                                                        {
+                                                            result = false;
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                }
-                                else if (objectA.GetType().IsClass || objectA.GetType().IsInterface)
-                                {
-                                    PropertyInfo[] properties;
-                                    if (isIncludeObsolete)
-                                        properties = objectTypeA.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => p.CanRead && !ignoreList.Contains(p.Name) && p.GetCustomAttributes(typeof(IgnoreObjectCompareAttribute), true).Length == 0).ToArray();
+                                    else if (objectA.GetType().IsClass || objectA.GetType().IsInterface)
+                                    {
+                                        PropertyInfo[] properties;
+                                        if (isIncludeObsolete)
+                                            properties = objectTypeA.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => p.CanRead && !ignoreList.Contains(p.Name) && p.GetCustomAttributes(typeof(IgnoreObjectCompareAttribute), true).Length == 0).ToArray();
+                                        else
+                                            properties = objectTypeA.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => p.CanRead && !ignoreList.Contains(p.Name) && p.GetCustomAttributes(typeof(IgnoreObjectCompareAttribute), true).Length == 0 && p.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0).ToArray();
+
+                                        foreach (PropertyInfo propertyInfo in properties)
+                                        {
+                                            Object valueTypeA;
+                                            try
+                                            {
+                                                valueTypeA = propertyInfo.GetValue(objectA, null);
+                                                if (objectA != valueTypeA)
+                                                {
+                                                    if (!EvaluateObjectsComparison(propertyInfo.GetValue(objectA, null), propertyInfo.GetValue(objectB, null), objectHashList, isIncludeObsolete, ignoreList))
+                                                    {
+                                                        Console.WriteLine(String.Format(LocalizedResources.Instance().CannotCompareProperty, valueTypeA.GetType().FullName, propertyInfo.Name));
+                                                        result = false;
+                                                    }
+                                                }
+                                            }
+                                            catch (TargetParameterCountException ex)
+                                            {
+                                                // If "this[]" property, ignore it.
+                                                if (propertyInfo.Name != "Item")
+                                                {
+                                                    Console.WriteLine(String.Format(LocalizedResources.Instance().CannotCompareProperty, objectA.GetType().FullName, propertyInfo.Name));
+                                                }
+                                            }
+                                            catch (TargetInvocationException te)
+                                            {
+                                                Console.WriteLine(String.Format(LocalizedResources.Instance().PropertyOrMethodNotImplemented, propertyInfo.Name));
+                                            }
+                                            catch (NotImplementedException ne)
+                                            {
+                                                Console.WriteLine(String.Format(LocalizedResources.Instance().PropertyOrMethodNotImplemented, propertyInfo.Name));
+                                            }
+                                        }
+                                    }
+                                    else if (objectTypeA != objectTypeB)
+                                    {
+                                        result = false;
+                                        return result;
+                                    }
                                     else
-                                        properties = objectTypeA.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => p.CanRead && !ignoreList.Contains(p.Name) && p.GetCustomAttributes(typeof(IgnoreObjectCompareAttribute), true).Length == 0 && p.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0).ToArray();
-
-                                    foreach (PropertyInfo propertyInfo in properties)
                                     {
-                                        Object valueTypeA;
-                                        try
-                                        {
-                                            valueTypeA = propertyInfo.GetValue(objectA, null);
-                                            if (objectA != valueTypeA)
-                                            {
-                                                if (!EvaluateObjectsComparison(propertyInfo.GetValue(objectA, null), propertyInfo.GetValue(objectB, null), objectHashList, isIncludeObsolete, ignoreList))
-                                                {
-                                                    Console.WriteLine(String.Format(LocalizedResources.Instance().CannotCompareProperty, valueTypeA.GetType().FullName, propertyInfo.Name));
-                                                    result = false;
-                                                }
-                                            }
-                                        }
-                                        catch (TargetParameterCountException ex)
-                                        {
-                                            // If "this[]" property, ignore it.
-                                            if (propertyInfo.Name != "Item")
-                                            {
-                                                Console.WriteLine(String.Format(LocalizedResources.Instance().CannotCompareProperty, objectA.GetType().FullName, propertyInfo.Name));
-                                            }
-                                        }
-                                        catch (TargetInvocationException te)
-                                        {
-                                            Console.WriteLine(String.Format(LocalizedResources.Instance().PropertyOrMethodNotImplemented, propertyInfo.Name));
-                                        }
-                                        catch (NotImplementedException ne)
-                                        {
-                                            Console.WriteLine(String.Format(LocalizedResources.Instance().PropertyOrMethodNotImplemented, propertyInfo.Name));
-                                        }
+                                        result = false;
                                     }
-                                }
-                                else if (objectTypeA != objectTypeB)
-                                {
-                                    result = false;
-                                    return result;
-                                }
-                                else
-                                {
-                                    result = false;
                                 }
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine(String.Format(LocalizedResources.Instance().MismatchWithPropertyFound, objectA.GetType().Name, objectB.GetType().Name));
-                            result = false;
+                            else
+                            {
+                                Console.WriteLine(String.Format(LocalizedResources.Instance().MismatchWithPropertyFound, objectA.GetType().Name, objectB.GetType().Name));
+                                result = false;
+                            }
                         }
                     }
                 }

@@ -9,6 +9,7 @@ using System.Linq;
 
 namespace Mercury.Language.ObjectExtension.Test
 {
+    [Parallelizable(ParallelScope.ContextMask)]
     public class ObjectExtensionTest
     {
         Random rnd = new Random();
@@ -73,6 +74,9 @@ namespace Mercury.Language.ObjectExtension.Test
             objectC.AddItem(t2);
 
             ClassicAssert.IsTrue(objectA.HasValue());
+
+            ClassicAssert.IsTrue(typeof(String).Equals(typeof(String)));
+            ClassicAssert.IsFalse(typeof(String).Equals(typeof(Double)));
 
             ClassicAssert.IsTrue(objectA.AreObjectsEqual(objectB));
             ClassicAssert.IsFalse(objectA.AreObjectsEqual(objectC));

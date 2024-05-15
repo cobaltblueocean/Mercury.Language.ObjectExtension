@@ -46,6 +46,7 @@ namespace Mercury.Language.ObjectExtension.Test.DummyObjects
             get { throw new NotImplementedException(); }
         }
 
+        public Type RefType { get { return typeof(String); } }
         public IRefObject ReferenceObject { get; set; }
         public Function<Double, Double> Function { get; set; }
         
