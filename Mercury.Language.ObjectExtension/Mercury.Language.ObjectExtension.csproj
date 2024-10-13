@@ -8,7 +8,7 @@
     <ApplicationIcon>Mercury.ico</ApplicationIcon>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageId>MercuryTech.Language.ObjectExtension</PackageId>
-    <Version>0.8.0.5</Version>
+    <Version>0.8.0.6</Version>
     <Authors>Kei Nakai</Authors>
     <Company>Mercury Technologies</Company>
     <Product>Mercury.ObjectExtension package</Product>
@@ -30,7 +30,9 @@
 
 [0.8.0.5]
  - Bug fix for AreObjectsEqual() method to treat Type property.
-</PackageReleaseNotes>
+
+[0.8.0.6]
+- Updated referenced packages</PackageReleaseNotes>
     <Title>Mercury Language Object Extensions</Title>
     <PackageProjectUrl>https://github.com/cobaltblueocean/Mercury.Language.ObjectExtension</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
