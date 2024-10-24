@@ -22,10 +22,24 @@ namespace Mercury.Language.ObjectExtension.Test
             var objectC = new ComplexObject();
 
             var data = new Dictionary<int, double?>();
-            var values = new double?[] { 1, 0, 0.12345, 1.25 };
+            var values = new double?[] {null, 1, 0, 0.12345, 1.25 };
             for (int i = 0; i<5; i++)
             {
                 data.Add(i, rnd.NextDouble());
+            }
+
+            var _data = new double?[6][];
+
+            for (int i = 0; i<5; i++)
+            {
+                if ((i >= 0) && (i <= 4))
+                    {
+                    _data[i] = new double?[6];
+                    for (int j = 0; j < 6; j++)
+                    {
+                        _data[i][j] = rnd.NextDouble();
+                    }
+                }
             }
 
             var t1 = new Tuple<double?, double?>(3.2575342465753425, 112367173.16659279);
@@ -42,18 +56,21 @@ namespace Mercury.Language.ObjectExtension.Test
             objectA.Id = 1;
             objectA.Name = "Dummy";
             objectA.Value = values;
+            objectA.Data = _data;
             objectA.ReferenceObject = ref1;
             objectA.Function = new SimpleFunction();
 
             objectB.Id = 1;
             objectB.Name = "Dummy";
             objectB.Value = values;
+            objectB.Data = _data;
             objectB.ReferenceObject = ref1;
             objectB.Function = new SimpleFunction();
 
             objectC.Id = 1;
             objectC.Name = "Dummy";
             objectC.Value = values;
+            objectC.Data = _data;
             objectC.ReferenceObject = ref2;
             objectC.Function = new MultiplyFunction();
 
@@ -64,12 +81,15 @@ namespace Mercury.Language.ObjectExtension.Test
                 objectC.AddChild(item.Key, item.Value);
             }
 
+            objectA.AddItem(null);
             objectA.AddItem(t1);
             objectA.AddItem(t2);
 
+            objectB.AddItem(null);
             objectB.AddItem(t1);
             objectB.AddItem(t2);
 
+            objectC.AddItem(null);
             objectC.AddItem(t1);
             objectC.AddItem(t2);
 
@@ -119,8 +139,8 @@ namespace Mercury.Language.ObjectExtension.Test
         [Test]
         public void Test3()
         {
-            DateTime[] array1 = new DateTime[] { new DateTime(2012, 12, 15), new DateTime(2012, 10, 5), new DateTime(2011, 9, 1) };
-            DateTime[] array2 = new DateTime[] { new DateTime(2012, 12, 15), new DateTime(2012, 10, 8), new DateTime(2011, 9, 1) };
+            DateTime?[] array1 = new DateTime?[] { null, new DateTime(2012, 12, 15), new DateTime(2012, 10, 5), new DateTime(2011, 9, 1) };
+            DateTime?[] array2 = new DateTime?[] { null, new DateTime(2012, 12, 15), new DateTime(2012, 10, 8), new DateTime(2011, 9, 1) };
 
             ClassicAssert.IsFalse(array1.AreObjectsEqual(array2));
         }

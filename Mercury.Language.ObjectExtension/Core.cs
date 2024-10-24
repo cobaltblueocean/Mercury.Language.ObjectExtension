@@ -233,7 +233,7 @@ namespace System
         {
             // If any this null throw an exception
             if (source == null || destination == null)
-                throw new Exception(Mercury.Language.LocalizedResources.Instance().CoreSourceDestinationObjectsAreNull);
+                throw new Exception(Mercury.Language.LocalizedResources.Instance().CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL);
             // Getting the Types of the objects
             Type typeDest = destination.GetType();
             Type typeSrc = source.GetType();

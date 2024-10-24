@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CannotCompareProperty" xml:space="preserve">
+  <data name="CANNOT_COMPARE_PROPERTY" xml:space="preserve">
     <value>Cannot compare property '{0}.{1}'.</value>
   </data>
-  <data name="CannotCompareValues" xml:space="preserve">
+  <data name="CANNOT_COMPARE_VALUES" xml:space="preserve">
     <value>Cannot compare values. {0}</value>
   </data>
-  <data name="CollectionCountsForPropertyDoNotMatch" xml:space="preserve">
+  <data name="COLLECTION_COUNTS_FOR_PROPERTY_DO_NOT_MATCH" xml:space="preserve">
     <value>Collection counts for property '{0}.{1}' do not match.</value>
   </data>
-  <data name="CoreSourceDestinationObjectsAreNull" xml:space="preserve">
+  <data name="CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL" xml:space="preserve">
     <value>Source or/and Destination Objects are null</value>
   </data>
-  <data name="ItemInPropertyCollectionDoesNotMatch" xml:space="preserve">
+  <data name="ITEM_IN_PROPERTY_COLLECTION_DOES_NOT_MATCH" xml:space="preserve">
     <value>Item {0} in property collection '{1}.{2}' does not match.</value>
   </data>
-  <data name="MismatchWithPropertyFound" xml:space="preserve">
+  <data name="MISMATCH_WITH_PROPERTY_FOUND" xml:space="preserve">
     <value>Mismatch with property '{0}.{1}' found.</value>
   </data>
-  <data name="PropertyOrMethodNotImplemented" xml:space="preserve">
+  <data name="PROPERTY_OR_METHOD_NOT_IMPLEMENTED" xml:space="preserve">
     <value>This Property or Method {0} is not implemented.</value>
   </data>
 </root>

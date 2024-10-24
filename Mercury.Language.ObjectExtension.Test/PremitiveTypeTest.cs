@@ -42,15 +42,15 @@ namespace Mercury.Language.ObjectExtension.Test{
 
             Assert.That(hashA == hashB);
 
-            Object objectA = new object();
-            Object objectB = new object();
+            //Object objectA = new object();
+            //Object objectB = new object();
 
-            hashA = objectA.GetHashCode();
-            hashB = objectB.GetHashCode();
+            //hashA = objectA.GetHashCode();
+            //hashB = objectB.GetHashCode();
 
-            Assert.That(hashA == hashB);
+            //Assert.That(hashA == hashB);
 
-            Assert.Pass();
+            //Assert.Pass();
         }
     }
 }

@@ -63,63 +63,63 @@ namespace Mercury.Language.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot compare property &apos;{0}.{1}&apos;..
         /// </summary>
-        internal static string CannotCompareProperty {
+        internal static string CANNOT_COMPARE_PROPERTY {
             get {
-                return ResourceManager.GetString("CannotCompareProperty", resourceCulture);
+                return ResourceManager.GetString("CANNOT_COMPARE_PROPERTY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cannot compare values. {0}.
         /// </summary>
-        internal static string CannotCompareValues {
+        internal static string CANNOT_COMPARE_VALUES {
             get {
-                return ResourceManager.GetString("CannotCompareValues", resourceCulture);
+                return ResourceManager.GetString("CANNOT_COMPARE_VALUES", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Collection counts for property &apos;{0}.{1}&apos; do not match..
         /// </summary>
-        internal static string CollectionCountsForPropertyDoNotMatch {
+        internal static string COLLECTION_COUNTS_FOR_PROPERTY_DO_NOT_MATCH {
             get {
-                return ResourceManager.GetString("CollectionCountsForPropertyDoNotMatch", resourceCulture);
+                return ResourceManager.GetString("COLLECTION_COUNTS_FOR_PROPERTY_DO_NOT_MATCH", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Source or/and Destination Objects are null.
         /// </summary>
-        internal static string CoreSourceDestinationObjectsAreNull {
+        internal static string CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL {
             get {
-                return ResourceManager.GetString("CoreSourceDestinationObjectsAreNull", resourceCulture);
+                return ResourceManager.GetString("CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Item {0} in property collection &apos;{1}.{2}&apos; does not match..
         /// </summary>
-        internal static string ItemInPropertyCollectionDoesNotMatch {
+        internal static string ITEM_IN_PROPERTY_COLLECTION_DOES_NOT_MATCH {
             get {
-                return ResourceManager.GetString("ItemInPropertyCollectionDoesNotMatch", resourceCulture);
+                return ResourceManager.GetString("ITEM_IN_PROPERTY_COLLECTION_DOES_NOT_MATCH", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Mismatch with property &apos;{0}.{1}&apos; found..
         /// </summary>
-        internal static string MismatchWithPropertyFound {
+        internal static string MISMATCH_WITH_PROPERTY_FOUND {
             get {
-                return ResourceManager.GetString("MismatchWithPropertyFound", resourceCulture);
+                return ResourceManager.GetString("MISMATCH_WITH_PROPERTY_FOUND", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to This Property or Method {0} is not implemented..
         /// </summary>
-        internal static string PropertyOrMethodNotImplemented {
+        internal static string PROPERTY_OR_METHOD_NOT_IMPLEMENTED {
             get {
-                return ResourceManager.GetString("PropertyOrMethodNotImplemented", resourceCulture);
+                return ResourceManager.GetString("PROPERTY_OR_METHOD_NOT_IMPLEMENTED", resourceCulture);
             }
         }
     }

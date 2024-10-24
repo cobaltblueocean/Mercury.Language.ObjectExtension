@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CannotCompareProperty" xml:space="preserve">
+  <data name="CANNOT_COMPARE_PROPERTY" xml:space="preserve">
     <value>プロパティを比較できません。 '{0}.{1}'.</value>
   </data>
-  <data name="CannotCompareValues" xml:space="preserve">
+  <data name="CANNOT_COMPARE_VALUES" xml:space="preserve">
     <value>値を比較できません。 {0}</value>
   </data>
-  <data name="CollectionCountsForPropertyDoNotMatch" xml:space="preserve">
+  <data name="COLLECTION_COUNTS_FOR_PROPERTY_DO_NOT_MATCH" xml:space="preserve">
     <value>プロパティ '{0}.{1}' 中のコレクションの数が違います。</value>
   </data>
-  <data name="CoreSourceDestinationObjectsAreNull" xml:space="preserve">
+  <data name="CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL" xml:space="preserve">
     <value>ソース、もしくはコピー先のオブジェクトがNULLです。</value>
   </data>
-  <data name="ItemInPropertyCollectionDoesNotMatch" xml:space="preserve">
+  <data name="ITEM_IN_PROPERTY_COLLECTION_DOES_NOT_MATCH" xml:space="preserve">
     <value>プロパティ・コレクション '{1}.{2}' 中のアイテム {0} が違います。</value>
   </data>
-  <data name="MismatchWithPropertyFound" xml:space="preserve">
+  <data name="MISMATCH_WITH_PROPERTY_FOUND" xml:space="preserve">
     <value>プロパティ '{0}.{1}' に違いが見つかりました。</value>
   </data>
-  <data name="PropertyOrMethodNotImplemented" xml:space="preserve">
+  <data name="PROPERTY_OR_METHOD_NOT_IMPLEMENTED" xml:space="preserve">
     <value>このプロパティもしくはメソッド {0} は実装されていません。</value>
   </data>
 </root>

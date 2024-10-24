@@ -87,38 +87,38 @@ namespace Mercury.Language
 
         #endregion
 
-        public String CannotCompareValues
+        public String CANNOT_COMPARE_VALUES
         {
-            get { return Properties.Resources.CannotCompareValues; }
+            get { return Properties.Resources.CANNOT_COMPARE_VALUES; }
         }
 
-        public String CannotCompareProperty
+        public String CANNOT_COMPARE_PROPERTY
         {
-            get { return Properties.Resources.CannotCompareProperty; }
+            get { return Properties.Resources.CANNOT_COMPARE_PROPERTY; }
         }
 
-        public String MismatchWithPropertyFound
+        public String MISMATCH_WITH_PROPERTY_FOUND
         {
-            get { return Properties.Resources.MismatchWithPropertyFound; }
+            get { return Properties.Resources.MISMATCH_WITH_PROPERTY_FOUND; }
         }
 
-        public String ItemInPropertyCollectionDoesNotMatch
+        public String ITEM_IN_PROPERTY_COLLECTION_DOES_NOT_MATCH
         {
-            get { return Properties.Resources.ItemInPropertyCollectionDoesNotMatch; }
+            get { return Properties.Resources.ITEM_IN_PROPERTY_COLLECTION_DOES_NOT_MATCH; }
         }
 
-        public String CollectionCountsForPropertyDoNotMatch
+        public String COLLECTION_COUNTS_FOR_PROPERTY_DO_NOT_MATCH
         {
-            get { return Properties.Resources.CollectionCountsForPropertyDoNotMatch; }
+            get { return Properties.Resources.COLLECTION_COUNTS_FOR_PROPERTY_DO_NOT_MATCH; }
         }
-        public String CoreSourceDestinationObjectsAreNull
+        public String CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL
         {
-            get { return Resources.CoreSourceDestinationObjectsAreNull; }
+            get { return Resources.CORE_SOURCE_DESTINATION_OBJECTS_ARE_NULL; }
         }
 
-        public String PropertyOrMethodNotImplemented
+        public String PROPERTY_OR_METHOD_NOT_IMPLEMENTED
         {
-            get { return Resources.PropertyOrMethodNotImplemented; }
+            get { return Resources.PROPERTY_OR_METHOD_NOT_IMPLEMENTED; }
         }
 
     }

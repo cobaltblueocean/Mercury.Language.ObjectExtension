@@ -8,7 +8,7 @@
     <ApplicationIcon>Mercury.ico</ApplicationIcon>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageId>MercuryTech.Language.ObjectExtension</PackageId>
-    <Version>0.8.0.6</Version>
+    <Version>0.8.0.9</Version>
     <Authors>Kei Nakai</Authors>
     <Company>Mercury Technologies</Company>
     <Product>Mercury.ObjectExtension package</Product>
@@ -32,7 +32,16 @@
  - Bug fix for AreObjectsEqual() method to treat Type property.
 
 [0.8.0.6]
-- Updated referenced packages</PackageReleaseNotes>
+- Updated referenced packages
+
+[0.8.0.7]
+- Bug fix for the EvaluateObjectsComparison() method which throwing exception when the property item is ICollection and contains null item.
+
+[0.8.0.8]
+- Streamlined the EvaluateObjectsComparison() method and add StackTrace to output when unexpected Exception occured.
+
+[0.8.0.9]
+- Added more condition to avoid Null reference to be evaluated and cause of exception.</PackageReleaseNotes>
     <Title>Mercury Language Object Extensions</Title>
     <PackageProjectUrl>https://github.com/cobaltblueocean/Mercury.Language.ObjectExtension</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>

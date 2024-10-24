@@ -30,6 +30,7 @@ namespace Mercury.Language.ObjectExtension.Test.DummyObjects
         int Id { get; set; }
         String Name { get; set; }
         double?[] Value { get; set; }
+        double?[][] Data { get; set; }
 
         [IgnoreObjectCompare]
         string Description { get; set; }

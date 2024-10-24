@@ -28,14 +28,15 @@ namespace Mercury.Language.ObjectExtension.Test.DummyObjects
     {
         private List<ChildObject> _children;
         private Function<Double, Double> _function;
-        private List<Tuple<double?, double?>> _list;
-
+        private List<Tuple<double?, double?>?> _list;
 
         public int Id { get; set; }
         public string Name { get; set; }
         public double?[] Value { get; set; }
 
-        public Object Reference { get ; set; }
+        public Object Reference { get; set; }
+
+        public double?[][] Data { get; set;}
 
         public ChildObject[] Children { get { return _children.ToArray(); } }
 
@@ -64,7 +65,7 @@ namespace Mercury.Language.ObjectExtension.Test.DummyObjects
         public ComplexObject()
         {
             _children = new List<ChildObject>();
-            _list = new List<Tuple<double?, double?>>();
+            _list = new List<Tuple<double?, double?>?>();
         }
 
         public void AddChild(int key, double? value)
@@ -77,7 +78,7 @@ namespace Mercury.Language.ObjectExtension.Test.DummyObjects
             throw new NotSupportedException();
         }
 
-        public void AddItem(Tuple<double?, double?> item)
+        public void AddItem(Tuple<double?, double?>? item)
         {
             _list.Add(item);
         }
