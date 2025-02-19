@@ -8,7 +8,7 @@
     <ApplicationIcon>Mercury.ico</ApplicationIcon>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageId>MercuryTech.Language.ObjectExtension</PackageId>
-    <Version>0.8.0.9</Version>
+    <Version>0.8.0.11</Version>
     <Authors>Kei Nakai</Authors>
     <Company>Mercury Technologies</Company>
     <Product>Mercury.ObjectExtension package</Product>
@@ -41,7 +41,11 @@
 - Streamlined the EvaluateObjectsComparison() method and add StackTrace to output when unexpected Exception occured.
 
 [0.8.0.9]
-- Added more condition to avoid Null reference to be evaluated and cause of exception.</PackageReleaseNotes>
+- Added more condition to avoid Null reference to be evaluated and cause of exception.
+
+[0.8.0.10]
+ - Ported DateTimeExtension class
+</PackageReleaseNotes>
     <Title>Mercury Language Object Extensions</Title>
     <PackageProjectUrl>https://github.com/cobaltblueocean/Mercury.Language.ObjectExtension</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
