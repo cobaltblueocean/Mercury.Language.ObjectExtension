@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Mercury.Language</RootNamespace>
     <ApplicationIcon>Mercury.ico</ApplicationIcon>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageId>MercuryTech.Language.ObjectExtension</PackageId>
-    <Version>0.8.0.13</Version>
+    <Version>0.8.0.14</Version>
     <Authors>Kei Nakai</Authors>
     <Company>Mercury Technologies</Company>
     <Product>Mercury.ObjectExtension package</Product>
@@ -48,6 +48,9 @@
 
 [0.8.0.13]
  - Updated target framework from .NET 7 to .NET 8
+
+[0.8.0.14]
+ - Updated target framework from .NET 8 to .NET 10
 </PackageReleaseNotes>
     <Title>Mercury Language Object Extensions</Title>
     <PackageProjectUrl>https://github.com/cobaltblueocean/Mercury.Language.ObjectExtension</PackageProjectUrl>
